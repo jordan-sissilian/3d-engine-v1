@@ -5,7 +5,7 @@
 #include "../../libs/glad/include/glad/glad.h"
 #include <iostream>
 
-#define nameGame "3d"
+#define nameGame "3d\0"
 #define major 3
 #define minor 3
 #define hauteurJeu 768 

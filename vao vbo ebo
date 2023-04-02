@@ -1,0 +1,59 @@
+        GLuint VAO;                   // informations de sommet stockées dans un ou plusieurs VBO sont interprétées par le pipeline de rendu
+        glGenVertexArrays(1, &VAO);   // génère un VAO en réservant un emplacement de mémoire pour stocker ses données.
+        glBindVertexArray(VAO);       // lie le VAO pour spécifier la configuration des sommets stockés dans le VBO.
+        glEnableVertexAttribArray(0); // active l'attribut de sommet pour l'index 0 
+        float vertices[] = {
+            0.5f,  0.5f, 0.0f,   // top right
+            0.5f, -0.5f, 0.0f,   // bottom right
+            -0.5f, -0.5f, 0.0f,  // bottom left
+            -0.5f,  0.5f, 0.0f,  // top left
+            0.0f,  1.0f, 0.0f,   
+            -0.5f,  0.5f, 0.0f,
+        };
+        GLuint VBO; 
+        glGenBuffers(1, &VBO);                                                         
+       glBindBuffer(GL_ARRAY_BUFFER, VBO);                                            
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (void *)0);  
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+        GLushort indices [] = {
+            0, 1, 3,   // first triangle
+           1, 2, 3,   // second triangle
+           0, 4, 5,
+       };
+       GLuint EBO;
+       glGenBuffers(1, &EBO);
+       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+       glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+        glBindVertexArray(VAO); // lie le VAO pour dessiner les sommets stockés.
+        glUseProgram(shaderProgram->getShaderProgram());
+        glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_SHORT, 0);
+
+
+
+
+
+
+	triangle tri;
+    tri.p[0].x = -0.5f;
+    tri.p[0].y = -0.5f;
+    tri.p[0].z = 0.0f;
+    tri.p[1].x = 0.5f;
+    tri.p[1].y = -0.5f;
+    tri.p[1].z = 0.0f;
+    tri.p[2].x = 0.0f;
+    tri.p[2].y = 0.5f;
+    tri.p[2].z = 0.0f;
+    unsigned int VBO;
+    unsigned int VAO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    glBindVertexArray(VAO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(tri), &tri, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0); 
+    glBindVertexArray(0); 
+    glUseProgram(shaderProgram->getShaderProgram());
+    glBindVertexArray(VAO);
+    glDrawArrays(GL_TRIANGLES, 0, 3);

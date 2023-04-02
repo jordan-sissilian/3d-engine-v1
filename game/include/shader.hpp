@@ -6,13 +6,12 @@
 #include <iostream>
 
 extern const char *vertexShaderSource;
-
 extern const char *fragmentShaderSource;
 
 class shader
 {
 private:
-	unsigned int shaderProgram = 0;
+	unsigned int shaderProgram;
 	unsigned int vertexShader[2];
 	unsigned int fragmentShader;
 

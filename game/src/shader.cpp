@@ -1,6 +1,6 @@
 #include "../include/shader.hpp"
 
-void shader::loadVertexShader(void) // vertex shader transformation, zoom, rotation
+void shader::loadVertexShader(void)
 {
     this->vertexShader[0] = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(this->vertexShader[0], 1, &vertexShaderSource, NULL);
@@ -13,7 +13,7 @@ void shader::loadVertexShader(void) // vertex shader transformation, zoom, rotat
     }
 }
 
-void shader::loadFragmentShader(void) // fragment shader eclerage, ombre, effet, transparence
+void shader::loadFragmentShader(void)
 {
     this->fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(this->fragmentShader, 1, &fragmentShaderSource, NULL);
