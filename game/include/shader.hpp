@@ -23,10 +23,11 @@ public:
 	shader(void);
 	~shader();
 
+	unsigned int getShaderProgram(void);
+
+private:
 	void loadVertexShader(void);
 	void loadFragmentShader(void);
-
-	unsigned int getShaderProgram(void);
 };
 
 #endif

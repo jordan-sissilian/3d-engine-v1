@@ -33,5 +33,4 @@ private:
 	void loadGlad(void);
 };
 
-
 #endif

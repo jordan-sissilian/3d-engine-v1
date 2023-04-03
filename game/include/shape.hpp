@@ -8,8 +8,6 @@
 enum shapeChoise {
 	_triangle,
 	_ligne,
-	_reactangle,
-	_rond,
 	_formeCustom
 };
 
@@ -50,7 +48,6 @@ public:
 private:
 	void createTriangle(triangle tri);
 	void configureVBO(void);
-
 };
 
 #endif
