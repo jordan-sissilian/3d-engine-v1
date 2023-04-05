@@ -15,3 +15,6 @@ OBJ_NAME = ./bin/3d
 
 all : $(OBJS)
 	$(CC) $(OBJS) $(INCLUDE_PATHS) $(LIBRARY_PATHS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+
+t :
+	clear && make && ./bin/3d && rm ./bin/3d

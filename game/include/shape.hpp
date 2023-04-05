@@ -1,53 +1,48 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
-#include <vector>
-
 #include "./shader.hpp"
 
-enum shapeChoise {
-	_triangle,
-	_ligne,
-	_formeCustom
-};
-
-struct vec3d
+struct sommetTriangle
 {
 	float x, y, z;
 };
 
 struct triangle
 {
-	vec3d p[3];
-};
-
-struct mesh
-{
-	std::vector<triangle> tris;
+	sommetTriangle sommet[3];
 };
 
 class shape
 {
+public:
+	shape(char* name,
+		  char* fileToLoad,
+		  shader* mShader,
+		  unsigned int drawtype);
+	~shape();
+
+	void draw();
+
+	void setRotation(int Axe, float angle);
+	void setPosition(float x, float y, float z); // refaire
+	void setScale(float v); // refaire
+
+	void configureVbo();
 private:
-	unsigned int VAO; // encapsule tout les vbo
-	unsigned int VBO; // vertex couleur, position, normal, texture...
-	mesh Mesh;
-	triangle triangleSommet;
-	shader* Shader;
-	unsigned int DrawType;
+	std::vector<triangle> loadShapeFromFile(char* nameFile);
 
 public:
-	shape(shader *shader, unsigned int DrawType,
-	float x1, float x2, float x3,
-	float y1, float y2, float y3,
-	float z1, float z2, float z3);
-	~shape(void);
-
-	void draw(void);
-
+	char *name;
 private:
-	void createTriangle(triangle tri);
-	void configureVBO(void);
+	unsigned int mVao;
+	unsigned int mVbo;
+	unsigned int mDrawType;
+
+	shader* mShader;
+
+	std::vector<triangle> Mesh;
+	glm::mat4 matrix4x4 = glm::mat4(1.f);
 };
 
 #endif

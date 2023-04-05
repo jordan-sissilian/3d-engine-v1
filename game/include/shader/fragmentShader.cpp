@@ -6,4 +6,3 @@ const char *fragmentShaderSource =
         "{\n"
         "   FragColor = vertexColor;\n"
         "}\n\0";
-
