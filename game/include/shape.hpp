@@ -2,6 +2,7 @@
 #define SHAPE_H
 
 #include "./shader.hpp"
+#include <fstream>
 
 struct sommetTriangle
 {
@@ -17,6 +18,7 @@ class shape
 {
 public:
 	shape(char* name,
+		  char* caseToLoad,
 		  char* fileToLoad,
 		  shader* mShader,
 		  unsigned int drawtype);
@@ -30,7 +32,7 @@ public:
 
 	void configureVbo();
 private:
-	std::vector<triangle> loadShapeFromFile(char* nameFile);
+	std::vector<triangle> loadShapeFromFile(char* nameCase, char* nameFile);
 
 public:
 	char *name;

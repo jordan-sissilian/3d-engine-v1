@@ -12,11 +12,9 @@ void shape::draw()
 }
 
 void shape::setPosition(float x, float y, float z) // refaire
-{
-    glm::mat4 translation = glm::translate(this->matrix4x4, glm::vec3(x, y, z));
-    this->matrix4x4 = translation * this->matrix4x4;
-}
+{ }
 
+// Set Rotation: Axe: X=1, Y=2, Z=3
 void shape::setRotation(int Axe, float angle)
 {
     glm::mat4 rotation;
@@ -36,10 +34,7 @@ void shape::setRotation(int Axe, float angle)
 }
 
 void shape::setScale(float v) // refaire
-{
-    glm::mat4 scale = glm::scale(this->matrix4x4, glm::vec3(v));
-    this->matrix4x4 = scale * this->matrix4x4;
-}
+{ }
 
 void shape::configureVbo()
 {
@@ -50,77 +45,37 @@ void shape::configureVbo()
     glEnableVertexAttribArray(0);
     glBindVertexArray(0);
 }
+#include <unistd.h>
 
-std::vector<triangle> shape::loadShapeFromFile(char* nameFile) // refaire
+std::vector<triangle> shape::loadShapeFromFile(char* nameCase, char* nameFile)
 {
-    std::vector<triangle> Mesh;
-    triangle tri;
+    std::string name("./game/include/shape3d/");
+    name.append(nameCase), name.append("/"), name.append(nameFile);
+    std::fstream file(name, std::ios::in);
+    std::vector<triangle> mMesh;
+    std::string line;
 
-    if (nameFile == "1") {
-    tri.sommet[0].x = -0.4f; tri.sommet[0].y = +0.4f; tri.sommet[0].z = +0.0f; // haut
-    tri.sommet[1].x = -0.4f; tri.sommet[1].y = +0.0f; tri.sommet[1].z = +0.0f; // gauche
-    tri.sommet[2].x = +0.0f; tri.sommet[2].y = +0.0f; tri.sommet[2].z = +0.0f; // droite
-	Mesh.push_back(tri);
-    tri.sommet[0].x = -0.4f; tri.sommet[0].y = +0.4f; tri.sommet[0].z = +0.4f; // haut
-    tri.sommet[1].x = -0.4f; tri.sommet[1].y = +0.0f; tri.sommet[1].z = +0.4f; // gauche
-    tri.sommet[2].x = +0.0f; tri.sommet[2].y = +0.0f; tri.sommet[2].z = +0.4f; // droite
-	Mesh.push_back(tri);
-    tri.sommet[0].x = -0.4f; tri.sommet[0].y = +0.0f; tri.sommet[0].z = +0.0f; // haut
-    tri.sommet[1].x = -0.4f; tri.sommet[1].y = +0.0f; tri.sommet[1].z = +0.4f; // gauche
-    tri.sommet[2].x = +0.0f; tri.sommet[2].y = +0.0f; tri.sommet[2].z = +0.0f; // droite
-	Mesh.push_back(tri);
-    tri.sommet[0].x = -0.4f; tri.sommet[0].y = +0.4f; tri.sommet[0].z = +0.0f; // haut
-    tri.sommet[1].x = -0.4f; tri.sommet[1].y = +0.4f; tri.sommet[1].z = +0.4f; // gauche
-    tri.sommet[2].x = +0.0f; tri.sommet[2].y = +0.4f; tri.sommet[2].z = +0.0f; // droite
-	Mesh.push_back(tri);
-    tri.sommet[0].x = -0.4f; tri.sommet[0].y = +0.0f; tri.sommet[0].z = +0.0f; // haut
-    tri.sommet[1].x = -0.4f; tri.sommet[1].y = +0.4f; tri.sommet[1].z = +0.4f; // gauche
-    tri.sommet[2].x = -0.4f; tri.sommet[2].y = +0.4f; tri.sommet[2].z = +0.0f; // droite
-	Mesh.push_back(tri);
-    tri.sommet[0].x = +0.0f; tri.sommet[0].y = +0.0f; tri.sommet[0].z = +0.0f; // haut
-    tri.sommet[1].x = +0.0f; tri.sommet[1].y = +0.4f; tri.sommet[1].z = +0.4f; // gauche
-    tri.sommet[2].x = +0.0f; tri.sommet[2].y = +0.4f; tri.sommet[2].z = +0.0f; // droite
-	Mesh.push_back(tri);
-    } else {
-    tri.sommet[0].x = +0.0f; tri.sommet[0].y = +0.4f; tri.sommet[0].z = +0.0f; // haut
-    tri.sommet[1].x = -0.4f; tri.sommet[1].y = +0.4f; tri.sommet[1].z = +0.0f; // gauche
-    tri.sommet[2].x = +0.0f; tri.sommet[2].y = +0.0f; tri.sommet[2].z = +0.0f; // droite
-	Mesh.push_back(tri);
-    tri.sommet[0].x = +0.0f; tri.sommet[0].y = +0.4f; tri.sommet[0].z = +0.4f; // haut
-    tri.sommet[1].x = -0.4f; tri.sommet[1].y = +0.4f; tri.sommet[1].z = +0.4f; // gauche
-    tri.sommet[2].x = +0.0f; tri.sommet[2].y = +0.0f; tri.sommet[2].z = +0.4f; // droite
-	Mesh.push_back(tri);
-    tri.sommet[0].x = +0.0f; tri.sommet[0].y = +0.0f; tri.sommet[0].z = +0.0f; // haut
-    tri.sommet[1].x = +0.0f; tri.sommet[1].y = +0.0f; tri.sommet[1].z = +0.4f; // gauche
-    tri.sommet[2].x = -0.4f; tri.sommet[2].y = +0.0f; tri.sommet[2].z = +0.4f; // droite
-	Mesh.push_back(tri);
-    tri.sommet[0].x = +0.0f; tri.sommet[0].y = +0.4f; tri.sommet[0].z = +0.0f; // haut
-    tri.sommet[1].x = +0.0f; tri.sommet[1].y = +0.4f; tri.sommet[1].z = +0.4f; // gauche
-    tri.sommet[2].x = -0.4f; tri.sommet[2].y = +0.4f; tri.sommet[2].z = +0.4f; // droite
-	Mesh.push_back(tri);
-    tri.sommet[0].x = -0.4f; tri.sommet[0].y = +0.4f; tri.sommet[0].z = +0.4f; // haut
-    tri.sommet[1].x = -0.4f; tri.sommet[1].y = +0.0f; tri.sommet[1].z = +0.4f; // gauche
-    tri.sommet[2].x = -0.4f; tri.sommet[2].y = +0.0f; tri.sommet[2].z = +0.0f; // droite
-	Mesh.push_back(tri);
-    tri.sommet[0].x = +0.0f; tri.sommet[0].y = +0.4f; tri.sommet[0].z = +0.4f; // haut
-    tri.sommet[1].x = +0.0f; tri.sommet[1].y = +0.0f; tri.sommet[1].z = +0.4f; // gauche
-    tri.sommet[2].x = +0.0f; tri.sommet[2].y = +0.0f; tri.sommet[2].z = +0.0f; // droite
-	Mesh.push_back(tri);
+    while (std::getline(file, line)) {
+        triangle tri;
+        for (int i = 0, j = 0; i < 3; i++) {
+            tri.sommet[i].x = (float)std::stof(line.substr(j, 4));
+            tri.sommet[i].y = (float)std::stof(line.substr((j += 5), 4));
+            tri.sommet[i].z = (float)std::stof(line.substr((j += 5), 4));
+            i < 2 && (j += 6);
+        }
+        mMesh.push_back(tri);
     }
-
-
-
-
-    return (Mesh);  
+    file.close();
+    return (mMesh);  
 }
 
-shape::shape(char* name, char* fileToLoad, shader *Shader, unsigned int drawtype)
+shape::shape(char* name, char* caseToLoad, char* fileToLoad, shader* mShader, unsigned int drawtype)
 {
     this->name = name;
     this->mDrawType = drawtype;
-    this->mShader = Shader;
+    this->mShader = mShader;
 
-    this->Mesh = this->loadShapeFromFile(fileToLoad);
+    this->Mesh = this->loadShapeFromFile(caseToLoad, fileToLoad);
 
     glGenVertexArrays(1, &this->mVao);
 	glBindVertexArray(this->mVao);
