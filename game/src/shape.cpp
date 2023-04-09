@@ -1,40 +1,14 @@
 #include "../include/shape.hpp"
 
-void shape::draw()
+void shape::draw(glm::mat4 mModel)
 {
-    GLuint matrixLocation = glGetUniformLocation(this->mShader->getShaderProgram(), "matrix");
-
+    GLuint matrixLocation = glGetUniformLocation(this->mShader->getShaderProgram(), "matrixModel");
     glBindVertexArray(this->mVao);
-    glUniformMatrix4fv(matrixLocation, 1, GL_FALSE, glm::value_ptr(this->matrix4x4));
+    glUniformMatrix4fv(matrixLocation, 1, GL_FALSE, glm::value_ptr((mModel * this->matrix4x4)));
     glUseProgram(this->mShader->getShaderProgram());
     glBindBuffer(GL_ARRAY_BUFFER, this->mVbo);
     glDrawArrays(GL_TRIANGLES, 0, this->Mesh.size() * 3);
 }
-
-void shape::setPosition(float x, float y, float z) // refaire
-{ }
-
-// Set Rotation: Axe: X=1, Y=2, Z=3
-void shape::setRotation(int Axe, float angle)
-{
-    glm::mat4 rotation;
-
-    switch (Axe) {
-        case 1:
-            rotation = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(1.0f, 0.0f, 0.0f));
-            break;
-        case 2:
-            rotation = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0.0f, 0.0f, 1.0f));
-            break;
-        case 3:
-            rotation = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0.0f, 1.0f, 0.0f));
-            break;
-    }
-    this->matrix4x4 = rotation * this->matrix4x4;
-}
-
-void shape::setScale(float v) // refaire
-{ }
 
 void shape::configureVbo()
 {
@@ -45,7 +19,6 @@ void shape::configureVbo()
     glEnableVertexAttribArray(0);
     glBindVertexArray(0);
 }
-#include <unistd.h>
 
 std::vector<triangle> shape::loadShapeFromFile(char* nameCase, char* nameFile)
 {
@@ -66,7 +39,7 @@ std::vector<triangle> shape::loadShapeFromFile(char* nameCase, char* nameFile)
         mMesh.push_back(tri);
     }
     file.close();
-    return (mMesh);  
+    return (mMesh);
 }
 
 shape::shape(char* name, char* caseToLoad, char* fileToLoad, shader* mShader, unsigned int drawtype)

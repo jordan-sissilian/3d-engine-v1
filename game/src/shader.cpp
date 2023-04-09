@@ -11,15 +11,6 @@ void shader::loadVertexShader(void)
             glGetShaderInfoLog(this->vertexShader[0], 512, NULL, this->infoLog);
             std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << this->infoLog << std::endl;
         }
-    } else if (this->v == 2){
-        this->vertexShader[1] = glCreateShader(GL_VERTEX_SHADER);
-        glShaderSource(this->vertexShader[1], 1, &vertexShaderSource1, NULL);
-        glCompileShader(this->vertexShader[1]);
-        glGetShaderiv(this->vertexShader[1], GL_COMPILE_STATUS, &this->success);
-        if (!this->success) {
-            glGetShaderInfoLog(this->vertexShader[1], 512, NULL, this->infoLog);
-            std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << this->infoLog << std::endl;
-        }
     }
 }
 
@@ -46,9 +37,7 @@ shader::shader(int v)
     this->shaderProgram = glCreateProgram();
 	this->loadVertexShader();
 	this->loadFragmentShader();
-    this->v == 1 ?
-    glAttachShader(this->shaderProgram, this->vertexShader[0]) :
-    glAttachShader(this->shaderProgram, this->vertexShader[1]) ;
+    glAttachShader(this->shaderProgram, this->vertexShader[0]);
     glAttachShader(this->shaderProgram, this->fragmentShader[0]);
     glLinkProgram(this->shaderProgram);
 

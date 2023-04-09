@@ -12,7 +12,6 @@
 #include "../../libs/glm/gtc/type_ptr.hpp"
 
 extern const char *vertexShaderSource;
-extern const char *vertexShaderSource1;
 extern const char *fragmentShaderSource;
 
 class shader

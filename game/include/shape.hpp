@@ -24,11 +24,7 @@ public:
 		  unsigned int drawtype);
 	~shape();
 
-	void draw();
-
-	void setRotation(int Axe, float angle);
-	void setPosition(float x, float y, float z); // refaire
-	void setScale(float v); // refaire
+	void draw(glm::mat4 mModel);
 
 	void configureVbo();
 private:
@@ -36,6 +32,11 @@ private:
 
 public:
 	char *name;
+	glm::vec3 position;
+	glm::vec3 scale;
+	glm::vec3 rotation;
+	glm::mat4 matrix4x4 = glm::mat4(1.f);
+
 private:
 	unsigned int mVao;
 	unsigned int mVbo;
@@ -44,7 +45,6 @@ private:
 	shader* mShader;
 
 	std::vector<triangle> Mesh;
-	glm::mat4 matrix4x4 = glm::mat4(1.f);
 };
 
 #endif
