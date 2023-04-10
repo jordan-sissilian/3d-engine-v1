@@ -12,6 +12,7 @@
 #include "../../libs/glm/gtc/type_ptr.hpp"
 
 #include "./shader.hpp"
+#include "./window.hpp"
 
 class camera
 {
@@ -20,6 +21,7 @@ public:
 	~camera();
 
 	void load();
+	void control(Window *window);
 
 private:
 	shader* mshader;
@@ -27,7 +29,7 @@ private:
 	GLuint matrixViewLocation;
 	glm::mat4 matrixView = glm::mat4(1.f);
 	glm::vec3 cameraPosition;
-    glm::vec3 cameraTarget;
+    glm::vec3 cameraFront;
     glm::vec3 cameraUp;
 
 	GLuint matrixProjectionLocation;

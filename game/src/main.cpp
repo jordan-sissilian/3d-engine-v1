@@ -21,7 +21,7 @@ int main(void)
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        mcamera->load();
+        mcamera->control(window);
 
         if (glfwGetKey(window->window, GLFW_KEY_5) == GLFW_PRESS)
             cube->setPosition(0, 0.001, 0, 0);
