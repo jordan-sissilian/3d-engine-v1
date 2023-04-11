@@ -20,7 +20,7 @@ void shape::configureVbo()
     glBindVertexArray(0);
 }
 
-std::vector<triangle> shape::loadShapeFromFile(char* nameCase, char* nameFile)
+std::vector<triangle> shape::loadShapeFromFile(const char* nameCase, const char* nameFile)
 {
     std::string name("./game/include/shape3d/");
     name.append(nameCase), name.append("/"), name.append(nameFile);
@@ -42,7 +42,7 @@ std::vector<triangle> shape::loadShapeFromFile(char* nameCase, char* nameFile)
     return (mMesh);
 }
 
-shape::shape(char* name, char* caseToLoad, char* fileToLoad, shader* mShader, unsigned int drawtype)
+shape::shape(const char* name, const char* caseToLoad, const char* fileToLoad, shader* mShader, unsigned int drawtype)
 {
     this->name = name;
     this->mDrawType = drawtype;

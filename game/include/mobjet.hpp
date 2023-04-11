@@ -6,7 +6,7 @@
 class mObjet
 {
 public:
-	mObjet(char*, shader*, unsigned int);
+	mObjet(std::vector<std::string>, shader*, unsigned int);
 	~mObjet();
 
 	void draw();
@@ -19,9 +19,10 @@ public:
 	glm::mat4 mModel = glm::mat4(1.f);
 
 private:
-	char* nameObjet;
+	std::string nameObjet;
 	int nbPart;
 	std::vector<char *> namePart;
+
 public:
 	std::vector<shape *> objet;
 };

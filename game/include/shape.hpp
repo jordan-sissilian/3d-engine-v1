@@ -17,9 +17,9 @@ struct triangle
 class shape
 {
 public:
-	shape(char* name,
-		  char* caseToLoad,
-		  char* fileToLoad,
+	shape(const char* name,
+		  const char* caseToLoad,
+		  const char* fileToLoad,
 		  shader* mShader,
 		  unsigned int drawtype);
 	~shape();
@@ -28,10 +28,10 @@ public:
 
 	void configureVbo();
 private:
-	std::vector<triangle> loadShapeFromFile(char* nameCase, char* nameFile);
+	std::vector<triangle> loadShapeFromFile(const char* nameCase, const char* nameFile);
 
 public:
-	char *name;
+	const char *name;
 	glm::vec3 position;
 	glm::vec3 scale;
 	glm::vec3 rotation;

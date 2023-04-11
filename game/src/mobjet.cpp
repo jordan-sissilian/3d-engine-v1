@@ -46,29 +46,18 @@ void mObjet::draw()
 	}
 }
 
-mObjet::mObjet(char* name, shader* mShader, unsigned int drawtype)
+mObjet::mObjet(std::vector<std::string> obj, shader* mShader, unsigned int drawtype)
 {
-	if (name == "cube") { // as refaire via des objet qui herite de mObjet
-		char names[2][10] = {"cube.3d", "cube2.3d"};
-		this->nameObjet = name;
-		this->nbPart = 2;
+	this->nameObjet = obj[0];
+	this->nbPart = 0;
 
-		for (int i = 0; i < this->nbPart; i++) {
-			this->namePart.push_back(names[i]);
-			shape* mshape = new shape(this->nameObjet, this->nameObjet, names[i], mShader, drawtype);
-			this->objet.push_back(mshape);
-		}
-	}
-	if (name == "map") { // as refaire via des objet qui herite de mObjet
-		char names[1][8] = {"map.3d"};
-		this->nameObjet = name;
-		this->nbPart = 1;
-
-		for (int i = 0; i < this->nbPart; i++) {
-			this->namePart.push_back(names[i]);
-			shape* mshape = new shape(this->nameObjet, this->nameObjet, names[i], mShader, drawtype);
-			this->objet.push_back(mshape);
-		}
+	for (int i = 0; i <= obj.size() ; i++, this->nbPart++);
+	for (int i = 0, j = 1; i < this->nbPart; i++, j++) {
+		char parts[obj[j].length()];
+		std::strcpy(parts, obj[j].c_str());
+		this->namePart.push_back(parts);
+		shape* mshape = new shape(this->nameObjet.c_str(), this->nameObjet.c_str(), obj[j].c_str(), mShader, drawtype);
+		this->objet.push_back(mshape);
 	}
 }
 
