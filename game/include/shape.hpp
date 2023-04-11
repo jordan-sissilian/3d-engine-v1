@@ -37,6 +37,7 @@ public:
 	glm::vec3 rotation;
 	glm::mat4 matrix4x4 = glm::mat4(1.f);
 
+
 private:
 	unsigned int mVao;
 	unsigned int mVbo;

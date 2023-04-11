@@ -6,6 +6,7 @@
 #include <cmath>
 
 #include "../../libs/glfw-3.3.8/include/GLFW/glfw3.h"
+#include "../../libs/glfw-3.3.8/include/GLFW/glfw3native.h"
 #include "../../libs/glad/include/glad/glad.h"
 #include "../../libs/glm/glm.hpp"
 #include "../../libs/glm/gtc/matrix_transform.hpp"
@@ -21,7 +22,8 @@ public:
 	~camera();
 
 	void load();
-	void control(Window *window);
+	void mouseControl(Window* window);
+	void control(Window* window);
 
 private:
 	shader* mshader;
@@ -34,6 +36,14 @@ private:
 
 	GLuint matrixProjectionLocation;
 	glm::mat4 matrixProjection = glm::mat4(1.f);
+
+private:
+	glm::vec3 direction;
+	float yaw;
+	float pitch;
+	float lastX;
+	float lastY;
+	float fov;
 };
 
 #endif

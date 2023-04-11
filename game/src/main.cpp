@@ -10,9 +10,10 @@ int main(void)
 
     mObjet* cube = new mObjet("cube", shaderProgram, GL_STATIC_DRAW);
 
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // debug mode filairej
-    glEnable(GL_DEPTH_TEST);
+    mObjet* map = new mObjet("map", shaderProgram, GL_STATIC_DRAW);
 
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // debug mode filaire
+    glEnable(GL_DEPTH_TEST);
 
     while (!glfwWindowShouldClose(window->window)) {
         if (glfwGetKey(window->window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
@@ -24,21 +25,21 @@ int main(void)
         mcamera->control(window);
 
         if (glfwGetKey(window->window, GLFW_KEY_5) == GLFW_PRESS)
-            cube->setPosition(0, 0.001, 0, 0);
+            cube->setPosition(0, 0.005, 0, 0);
         if (glfwGetKey(window->window, GLFW_KEY_6) == GLFW_PRESS)
-            cube->setPosition(1, 0, 0.001, 0);
+            cube->setPosition(1, 0, 0.005, 0);
         if (glfwGetKey(window->window, GLFW_KEY_7) == GLFW_PRESS)
-            cube->setPosition(2, 0, 0, 0.001);
+            cube->setPosition(2, 0, 0, 0.005);
         if (glfwGetKey(window->window, GLFW_KEY_1) == GLFW_PRESS)
-            cube->setRotation(0, 3, 0.5f);
+            cube->setRotation(0, 3, 0.9f);
         if (glfwGetKey(window->window, GLFW_KEY_2) == GLFW_PRESS)
-            cube->setRotation(1, 1, 0.5f);
+            cube->setRotation(1, 1, 0.9f);
         if (glfwGetKey(window->window, GLFW_KEY_3) == GLFW_PRESS)
-            cube->setRotation(2, 2, 0.5f);
+            cube->setRotation(2, 2, 0.9f);
         if (glfwGetKey(window->window, GLFW_KEY_4) == GLFW_PRESS)
-            cube->setScale(0, 1.005f);
+            cube->setScale(0, 1.004f);
 
-
+        map->draw();
         cube->draw();
 
         glfwSwapBuffers(window->window);

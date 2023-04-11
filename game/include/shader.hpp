@@ -17,10 +17,9 @@ extern const char *fragmentShaderSource;
 class shader
 {
 private:
-	int v;
 	unsigned int shaderProgram;
-	unsigned int vertexShader[2];
-	unsigned int fragmentShader[2];
+	unsigned int vertexShader;
+	unsigned int fragmentShader;
 
 public:
 	int success;
@@ -31,6 +30,7 @@ public:
 	~shader();
 
 	unsigned int getShaderProgram(void);
+	void setFloat(char* name, float value);
 
 private:
 	void loadVertexShader(void);

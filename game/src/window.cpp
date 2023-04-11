@@ -19,6 +19,7 @@ void Window::loadGLFW(void)
     if (!this->window) {
         std::cerr << "Erreur : " << "window na pas pu etre cree" << std::endl;
     }
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glfwMakeContextCurrent(this->window);
 	glfwSetFramebufferSizeCallback(this->window, framebuffer_size_callback);
 }

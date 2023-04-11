@@ -9,7 +9,6 @@ void mObjet::setPosition(int nbShape, float x, float y, float z)
 	!nbShape ? this->mModel *= position : this->objet[nbShape - 1]->matrix4x4 *= position; 
 }
 
-
 // nbShape: 0=AllShape, 1=Shape1, 2=Shape2...
 // v=multiplicateur
 void mObjet::setScale(int nbShape, float v)
@@ -42,16 +41,28 @@ void mObjet::setRotation(int nbShape, int Axe, float angle)
 
 void mObjet::draw()
 {
-	for (int i = 0; i < this->nbPart; i++)
+	for (int i = 0; i < this->nbPart; i++) {
 		this->objet[i]->draw(this->mModel);
+	}
 }
 
 mObjet::mObjet(char* name, shader* mShader, unsigned int drawtype)
 {
-	if (name == "cube") {
+	if (name == "cube") { // as refaire via des objet qui herite de mObjet
 		char names[2][10] = {"cube.3d", "cube2.3d"};
 		this->nameObjet = name;
 		this->nbPart = 2;
+
+		for (int i = 0; i < this->nbPart; i++) {
+			this->namePart.push_back(names[i]);
+			shape* mshape = new shape(this->nameObjet, this->nameObjet, names[i], mShader, drawtype);
+			this->objet.push_back(mshape);
+		}
+	}
+	if (name == "map") { // as refaire via des objet qui herite de mObjet
+		char names[1][8] = {"map.3d"};
+		this->nameObjet = name;
+		this->nbPart = 1;
 
 		for (int i = 0; i < this->nbPart; i++) {
 			this->namePart.push_back(names[i]);

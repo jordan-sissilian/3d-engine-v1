@@ -9,5 +9,5 @@ const char *vertexShaderSource =
     "void main()\n"
         "{\n"
         "   gl_Position = matrixProjection * matrixView * matrixModel * vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-        "   vertexColor = vec4(1.0f, 1.0f, 1.0f, 1.0f);"
+        "   vertexColor = mcolor;"
         "}\0";
