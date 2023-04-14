@@ -2,8 +2,7 @@
 #include "../include/mobjet.hpp"
 #include "../include/camera.hpp"
 
-#include "../include/shape/cube.hpp"
-#include "../include/shape/map.hpp"
+#include "../include/shape/gun.hpp"
 
 std::vector<std::string> mfileLoader(char *name);
 
@@ -13,7 +12,7 @@ int main(void)
     shader* shaderProgram = new shader(1);
     camera* mcamera = new camera(shaderProgram);
 
-    cube* mcube = new cube(mfileLoader("tree1"), shaderProgram, GL_STATIC_DRAW, glm::vec3(0.0f, 1.0f, 0.0f));
+    gun* mgun = new gun(mfileLoader("gun"), shaderProgram, GL_STATIC_DRAW, glm::vec3(0.0f, 1.0f, 0.0f));
 
     glEnable(GL_DEPTH_TEST);
     
@@ -27,12 +26,12 @@ int main(void)
         mcamera->control(window);
 
         if (glfwGetKey(window->window, GLFW_KEY_9) == GLFW_PRESS)
-            mcube->setRotation(0, 3, 0.5f);
+            mgun->setRotation(0, 3, 0.5f);
         if (glfwGetKey(window->window, GLFW_KEY_0) == GLFW_PRESS)
-            mcube->setRotation(0, 3, -0.5f);
+            mgun->setRotation(0, 3, -0.5f);
 
 //draw
-        mcube->draw();
+        mgun->draw();
 
         glfwSwapBuffers(window->window);
         glfwPollEvents();
