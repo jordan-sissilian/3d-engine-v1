@@ -6,11 +6,17 @@
 class map : public mObjet
 {
 private:
+	GLuint couleurMapLoc;
+	glm::vec3 couleurMap;
+
+	shader* mShader;
 	
 
 public:
-	map(std::vector<std::string> obj, shader*, unsigned int);
+	map(std::vector<std::string> obj, shader*, unsigned int, glm::vec3);
 	~map();
+
+	void drawMap();
 };
 
 #endif

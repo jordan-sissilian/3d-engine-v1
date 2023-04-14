@@ -1,11 +1,5 @@
 #include "../include/shader.hpp"
 
-void shader::setFloat(char* name, float value)
-{
-    GLuint loc = glGetUniformLocation(this->shaderProgram, name);
-    glUniform1f(loc, value); 
-}
-
 void shader::loadVertexShader(void)
 {
     this->vertexShader = glCreateShader(GL_VERTEX_SHADER);

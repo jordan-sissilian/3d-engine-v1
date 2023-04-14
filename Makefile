@@ -1,6 +1,6 @@
 CC = g++
 
-OBJS = ./game/src/*.cpp ./libs/glad/src/glad.c ./game/include/shader/*.cpp ./game/src/utils/*.cpp ./game/src/shape/*.cpp
+OBJS = ./game/src/*.cpp ./libs/glad/src/glad.c ./game/include/shader/*.cpp ./game/src/utils/*.cpp ./game/src/shape/*.cpp ./game/src/loadObjFile/loadObjFile.cpp
 
 INCLUDE_PATHS = -I./libs/glfw-3.3.8/include/GLFW/glfw3.h
 

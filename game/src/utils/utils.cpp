@@ -10,7 +10,7 @@ std::vector<std::string> mfileLoader(char *name)
 	struct dirent* entry;
 
 	std::vector<std::string> obj;
-	std::string path = "./game/include/shape3d/";
+	std::string path = "./res/shape3d/";
 	int count = 0;
 
 	path.append(name);

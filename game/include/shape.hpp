@@ -2,6 +2,7 @@
 #define SHAPE_H
 
 #include "./shader.hpp"
+#include "./loadObjFile/loadObjFile.hpp"
 #include <fstream>
 
 struct sommetTriangle
@@ -37,6 +38,7 @@ public:
 	glm::vec3 rotation;
 	glm::mat4 matrix4x4 = glm::mat4(1.f);
 
+	std::vector<triangle> Mesh;
 
 private:
 	unsigned int mVao;
@@ -45,7 +47,6 @@ private:
 
 	shader* mShader;
 
-	std::vector<triangle> Mesh;
 };
 
 #endif

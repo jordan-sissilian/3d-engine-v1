@@ -41,7 +41,7 @@ void camera::control(Window *window)
 	this->matrixView = glm::lookAt(this->cameraPosition, this->cameraPosition + this->cameraFront, this->cameraUp);
 	this->load();
 }
-
+ 
 void camera::load()
 {
 	glUniformMatrix4fv(this->matrixViewLocation, 1, GL_FALSE, glm::value_ptr(this->matrixView));
@@ -52,7 +52,7 @@ camera::camera(shader *shader)
 {
 	this->mshader = shader;
 
-	this->cameraPosition = glm::vec3(0.0f, 0.0f, 3.0f);
+	this->cameraPosition = glm::vec3(0.0f, 1.0f, 3.0f);
     this->cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 	this->cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
     this->matrixViewLocation = glGetUniformLocation(mshader->getShaderProgram(), "matrixView");

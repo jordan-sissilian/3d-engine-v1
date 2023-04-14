@@ -49,16 +49,31 @@ void mObjet::draw()
 mObjet::mObjet(std::vector<std::string> obj, shader* mShader, unsigned int drawtype)
 {
 	this->nameObjet = obj[0];
-	this->nbPart = 0;
+	this->nbPart = -1;
 
-	for (int i = 0; i <= obj.size() ; i++, this->nbPart++);
+	for (int i = 0; i < obj.size() ; i++, this->nbPart++);
 	for (int i = 0, j = 1; i < this->nbPart; i++, j++) {
-		char parts[obj[j].length()];
+		char parts[obj[j].length() + 1];
+		parts[obj[j].length()] = '\0';
 		std::strcpy(parts, obj[j].c_str());
 		this->namePart.push_back(parts);
 		shape* mshape = new shape(this->nameObjet.c_str(), this->nameObjet.c_str(), obj[j].c_str(), mShader, drawtype);
 		this->objet.push_back(mshape);
 	}
+
+	int nb = 0;
+	glm::vec3 center(0.0f, 0.0f, 0.0f);
+	for (int i = 0; i < this->nbPart; i++) {
+		for (int j = 0; j < this->objet[i]->Mesh.size(); j++) {
+			for (int k = 0; k < 3; k++) {
+    			center[0] += this->objet[i]->Mesh[j].sommet[k].x;
+    			center[1] += this->objet[i]->Mesh[j].sommet[k].y;
+    			center[2] += this->objet[i]->Mesh[j].sommet[k].z;
+				nb += 1;
+			}
+		}
+	}
+	this->mModel *= glm::translate(this->mModel, -(center /= nb));
 }
 
 mObjet::~mObjet()
