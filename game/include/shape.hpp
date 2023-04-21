@@ -2,18 +2,10 @@
 #define SHAPE_H
 
 #include "./shader.hpp"
+#include "./texture.hpp"
 #include "./loadObjFile/loadObjFile.hpp"
 #include <fstream>
 
-struct sommetTriangle
-{
-	float x, y, z;
-};
-
-struct triangle
-{
-	sommetTriangle sommet[3];
-};
 
 class shape
 {
@@ -32,10 +24,12 @@ private:
 	std::vector<triangle> loadShapeFromFile(const char* nameCase, const char* nameFile);
 
 public:
-	const char *name;
+	const char* name;
 	glm::vec3 position;
 	glm::vec3 scale;
 	glm::vec3 rotation;
+
+	GLuint matrixLocation;
 	glm::mat4 matrix4x4 = glm::mat4(1.f);
 
 	std::vector<triangle> Mesh;
@@ -46,6 +40,7 @@ private:
 	unsigned int mDrawType;
 
 	shader* mShader;
+	texture* mTexture;
 
 };
 

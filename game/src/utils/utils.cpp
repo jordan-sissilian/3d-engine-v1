@@ -19,7 +19,10 @@ std::vector<std::string> mfileLoader(char *name)
 	directory = opendir(path.c_str());
     if (directory != NULL) {
         while ((entry = readdir(directory)) != NULL)
-			if (!!std::strcmp(entry->d_name, ".") && !!std::strcmp(entry->d_name, ".."))
+			if (!!std::strcmp(entry->d_name, ".") &&
+				!!std::strcmp(entry->d_name, "..") &&
+				!!std::strcmp(entry->d_name, "texture") &&
+				!!std::strcmp(entry->d_name, ".DS_Store"))
 				obj.push_back(entry->d_name);
 		closedir(directory);
 	}

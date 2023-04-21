@@ -7,9 +7,9 @@ INCLUDE_PATHS = -I./libs/glfw-3.3.8/include/GLFW/glfw3.h
 LIBRARY_PATHS = -L./libs/glfw-3.3.8/lib-arm64 -lglfw3 
 
 # -w suppresses all warnings
-COMPILER_FLAGS = -w
+COMPILER_FLAGS = -w -std=c++20
 
-LINKER_FLAGS = -framework OpenGL -framework IOKit -framework Cocoa
+LINKER_FLAGS = -framework OpenGL -framework IOKit -framework Cocoa -lSOIL2
 
 OBJ_NAME = ./bin/3d
 

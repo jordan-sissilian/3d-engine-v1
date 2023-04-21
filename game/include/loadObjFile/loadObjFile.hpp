@@ -6,9 +6,11 @@
 #include <cmath>
 #include <fstream>
 #include <sstream>
+#include <cstdio>
 #include "../shape.hpp"
 
 struct sommetTriangle;
+struct coordTexture;
 struct triangle;
 
 struct v
@@ -18,8 +20,8 @@ struct v
 
 struct vt
 {
-	double u, v, w;
-}; 
+	double u, v;
+};
 
 struct vn
 {
@@ -28,17 +30,9 @@ struct vn
 
 struct f
 {
-	int v1 = 0;
-	int v2 = 0;
-	int v3 = 0;
-
-	int vt1 = 0;
-	int vt2 = 0;
-	int vt3 = 0;
-
-	int vn1 = 0;
-	int vn2 = 0;
-	int vn3 = 0;
+	unsigned int v[3];
+	unsigned int vt[3];
+	unsigned int vn[3];
 };
 
 
@@ -48,24 +42,21 @@ private:
 	int version = 0;
 	std::string name;
 
-	int nbFace;
 	std::vector<f> vecFTmp;
 	std::vector<v> vecVtmp;
-	//std::vector<vt> vecVtTmp;
-	//std::vector<vn> vecVnTmp;
+	std::vector<vt> vecVtTmp;
+	std::vector<vn> vecVnTmp;
 
 public:
 	loadObjFile(std::string, std::string);
 	~loadObjFile();
 
 	std::vector<triangle> getMesh();
-	//getTexture();
-	//getNormal();
 
 private:
 	v getV(std::string line);
-	//void getVt();
-	//void getVn();
+	vt getVt(std::string line);
+	vn getVn(std::string line);
 	f mgetF(std::string line);
 	void getF();
 

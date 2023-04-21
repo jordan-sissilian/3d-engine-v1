@@ -28,15 +28,15 @@ void camera::mouseControl(Window* window)
 void camera::control(Window *window)
 {
 	if (glfwGetKey(window->window, GLFW_KEY_SPACE) == GLFW_PRESS)
-		this->cameraPosition += glm::vec3(0.0f, 0.005f, 0.0f);
+		this->cameraPosition += glm::vec3(0.0f, 0.1f, 0.0f);
 	if (glfwGetKey(window->window, GLFW_KEY_W) == GLFW_PRESS)
-		this->cameraPosition += 0.01f * this->cameraFront;
+		this->cameraPosition += 0.3f * this->cameraFront;
 	if (glfwGetKey(window->window, GLFW_KEY_S) == GLFW_PRESS)
-		this->cameraPosition -= 0.01f * this->cameraFront;
+		this->cameraPosition -= 0.3f * this->cameraFront;
 	if (glfwGetKey(window->window, GLFW_KEY_A) == GLFW_PRESS)
-		this->cameraPosition -= glm::normalize(glm::cross(this->cameraFront, this->cameraUp)) * 0.005f;
+		this->cameraPosition -= glm::normalize(glm::cross(this->cameraFront, this->cameraUp)) * 0.1f;
 	if (glfwGetKey(window->window, GLFW_KEY_D) == GLFW_PRESS)
-		this->cameraPosition += glm::normalize(glm::cross(this->cameraFront, this->cameraUp)) * 0.005f;
+		this->cameraPosition += glm::normalize(glm::cross(this->cameraFront, this->cameraUp)) * 0.1f;
 	this->mouseControl(window);
 	this->matrixView = glm::lookAt(this->cameraPosition, this->cameraPosition + this->cameraFront, this->cameraUp);
 	this->load();
@@ -57,7 +57,7 @@ camera::camera(shader *shader)
 	this->cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
     this->matrixViewLocation = glGetUniformLocation(mshader->getShaderProgram(), "matrixView");
 
-	this->matrixProjection = glm::perspective(glm::radians(45.0f), (float)1366/(float)768, 0.1f, 100.0f);
+	this->matrixProjection = glm::perspective(glm::radians(45.0f), (float)1366/(float)768, 0.1f, 1000.0f);
     this->matrixProjectionLocation = glGetUniformLocation(mshader->getShaderProgram(), "matrixProjection");
 
 	this->yaw = -90.0f;
