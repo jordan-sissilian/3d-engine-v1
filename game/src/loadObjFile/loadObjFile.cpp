@@ -75,16 +75,13 @@ void loadObjFile::getF()
 	std::fstream fileTmp = std::fstream(this->name, std::ios::in);
 
 	for (std::string lineTmp; std::getline(fileTmp, lineTmp) ;) {
-		for (int i = 0; i < lineTmp.length(); i++)
-        	if (lineTmp[i] == ' ' && lineTmp[i+1] == ' ' && (i--))
-            	lineTmp.erase(i + 2, 1);
-		if (lineTmp.size() > 2 && !std::strncmp(lineTmp.c_str(), "v ", 2))
+		if (!std::strncmp(lineTmp.c_str(), "v ", 2))
 			this->vecVtmp.push_back(this->getV(lineTmp));
-		if (lineTmp.size() > 2 && !std::strncmp(lineTmp.c_str(), "vt", 2))
+		if (!std::strncmp(lineTmp.c_str(), "vt", 2))
 			this->vecVtTmp.push_back(this->getVt(lineTmp));
-		if (lineTmp.size() > 2 && !std::strncmp(lineTmp.c_str(), "vn", 2))
+		if (!std::strncmp(lineTmp.c_str(), "vn", 2))
 			this->vecVnTmp.push_back(this->getVn(lineTmp));
-		if (lineTmp.size() > 2 && !std::strncmp(lineTmp.c_str(), "f ", 2))
+		if (!std::strncmp(lineTmp.c_str(), "f ", 2))
 			this->vecFTmp.push_back(this->mgetF(lineTmp));
 	}
     fileTmp.close();
@@ -100,12 +97,13 @@ std::vector<triangle> loadObjFile::getMesh()
 			tri.sommet[j].x = this->vecVtmp[this->vecFTmp[i].v[j] - 1].x;
 			tri.sommet[j].y = this->vecVtmp[this->vecFTmp[i].v[j] - 1].y;
 			tri.sommet[j].z = this->vecVtmp[this->vecFTmp[i].v[j] - 1].z;
+
 			tri.sommet[j].u = this->vecVtTmp[this->vecFTmp[i].vt[j] - 1].u;
 			tri.sommet[j].v = this->vecVtTmp[this->vecFTmp[i].vt[j] - 1].v;
 		}
 		mMesh.push_back(tri);
 	}
-	return (mMesh);
+ 	return (mMesh);
 }
 
 loadObjFile::loadObjFile(std::string caseToLoad, std::string fileToLoad)

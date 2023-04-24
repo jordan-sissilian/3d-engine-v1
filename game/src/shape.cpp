@@ -2,13 +2,13 @@
 
 void shape::draw(glm::mat4 mModel)
 {
-    this->mTexture->bind(this->mShader);
 
     glBindVertexArray(this->mVao);
     glBindBuffer(GL_ARRAY_BUFFER, this->mVbo);
 
     glUniformMatrix4fv(this->matrixLocation, 1, GL_FALSE, glm::value_ptr((mModel * this->matrix4x4)));
     glUseProgram(this->mShader->getShaderProgram());
+    this->mTexture->bind(this->mShader);
     glDrawArrays(GL_TRIANGLES, 0, this->Mesh.size() * 3);
 }
 
@@ -41,7 +41,7 @@ shape::shape(const char* name, const char* caseToLoad, const char* fileToLoad, s
 	this->configureVbo();
     this->matrixLocation = glGetUniformLocation(this->mShader->getShaderProgram(), "matrixModel");
 
-    this->mTexture = new texture("./res/shape3d/gun/texture/1.jpg", 2048, 2048);
+    this->mTexture = new texture("./res/shape3d/gun/texture/1.png");
 }
 
 shape::~shape() { }

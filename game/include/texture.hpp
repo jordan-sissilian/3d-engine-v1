@@ -31,8 +31,9 @@ struct triangle
 
 class texture {
 public:
-    texture(std::string name, int height, int width);
+    texture(std::string name);
     ~texture();
+
     void bind(shader*);
 
 private:

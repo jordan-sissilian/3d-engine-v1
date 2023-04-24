@@ -15,17 +15,17 @@ struct triangle;
 
 struct v
 {
-	double x, y, z;
+	float x, y, z;
 };
 
 struct vt
 {
-	double u, v;
+	float u, v;
 };
 
 struct vn
 {
-	double x, y, z;
+	float x, y, z;
 };
 
 struct f
@@ -59,8 +59,6 @@ private:
 	vn getVn(std::string line);
 	f mgetF(std::string line);
 	void getF();
-
-	void transformToTriangle();
 };
 
 #endif

@@ -17,9 +17,9 @@ int main(void)
     gun* piece = new gun(mfileLoader("gun"), shaderProgram, GL_STATIC_DRAW, glm::vec3(0.0f, 0.0f, 0.0f));
 
     glEnable(GL_DEPTH_TEST);
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //debug mode filaire
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //debug mode filaire
 
-    piece->setPosition(0, +0.0f, +0.0f, -100.0f);
+    piece->setPosition(0, +0.0f, +0.0f, -30.0f);
 
 
     while (!glfwWindowShouldClose(window->window)) {
@@ -42,6 +42,7 @@ int main(void)
             piece->setPosition(0, 0.0, 0.1, 0.0f);
         if (glfwGetKey(window->window, GLFW_KEY_4) == GLFW_PRESS)
             piece->setPosition(0, 0.1, 0.0, 0.0f);
+
 
         piece->drawgun();
 

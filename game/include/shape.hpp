@@ -18,8 +18,8 @@ public:
 	~shape();
 
 	void draw(glm::mat4 mModel);
-
 	void configureVbo();
+
 private:
 	std::vector<triangle> loadShapeFromFile(const char* nameCase, const char* nameFile);
 
@@ -41,7 +41,6 @@ private:
 
 	shader* mShader;
 	texture* mTexture;
-
 };
 
 #endif
