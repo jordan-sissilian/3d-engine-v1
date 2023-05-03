@@ -41,7 +41,10 @@ shape::shape(const char* name, const char* caseToLoad, const char* fileToLoad, s
 	this->configureVbo();
     this->matrixLocation = glGetUniformLocation(this->mShader->getShaderProgram(), "matrixModel");
 
-    this->mTexture = new texture("./res/shape3d/gun/texture/1.png");
+    if (name[0] == 'm')
+        this->mTexture = new texture("./res/shape3d/map/texture/1.png");
+    else
+        this->mTexture = new texture("./res/shape3d/" + std::string(name) + "/texture/arbre.jpg");
 }
 
 shape::~shape() { }
