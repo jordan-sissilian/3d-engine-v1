@@ -13,21 +13,9 @@ struct sommetTriangle;
 struct coordTexture;
 struct triangle;
 
-struct v
-{
-	float x, y, z;
-};
-
-struct vt
-{
-	float u, v;
-};
-
-struct vn
-{
-	float x, y, z;
-};
-
+struct v { float x, y, z; };
+struct vt { float u, v; };
+struct vn { float x, y, z; };
 struct f
 {
 	unsigned int v[3];
@@ -38,20 +26,12 @@ struct f
 
 class loadObjFile
 {
-private:
-	int version = 0;
-	std::string name;
-
-	std::vector<f> vecFTmp;
-	std::vector<v> vecVtmp;
-	std::vector<vt> vecVtTmp;
-	std::vector<vn> vecVnTmp;
-
 public:
 	loadObjFile(std::string, std::string);
-	~loadObjFile();
+	~loadObjFile() {};
 
 	std::vector<triangle> getMesh();
+	std::string getTextureName();
 
 private:
 	v getV(std::string line);
@@ -59,6 +39,19 @@ private:
 	vn getVn(std::string line);
 	f mgetF(std::string line);
 	void getF();
+
+private:
+	int version = 0;
+	std::string name;
+	std::string textureName = "error";
+
+	std::string caseToLoad;
+	std::string fileToLoad;
+
+	std::vector<f> vecFTmp;
+	std::vector<v> vecVtmp;
+	std::vector<vt> vecVtTmp;
+	std::vector<vn> vecVnTmp;
 };
 
 #endif

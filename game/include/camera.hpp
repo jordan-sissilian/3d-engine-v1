@@ -1,17 +1,6 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include <iostream>
-#include <vector>
-#include <cmath>
-
-#include "../../libs/glfw-3.3.8/include/GLFW/glfw3.h"
-#include "../../libs/glfw-3.3.8/include/GLFW/glfw3native.h"
-#include "../../libs/glad/include/glad/glad.h"
-#include "../../libs/glm/glm.hpp"
-#include "../../libs/glm/gtc/matrix_transform.hpp"
-#include "../../libs/glm/gtc/type_ptr.hpp"
-
 #include "./shader.hpp"
 #include "./window.hpp"
 
@@ -39,11 +28,11 @@ private:
 
 private:
 	glm::vec3 direction;
-	float yaw;
-	float pitch;
-	float lastX;
-	float lastY;
-	float fov;
+	float yaw = -90.0f;
+	float pitch = 0.0f;
+	float lastX = 1366.0f / 2.0;
+	float lastY  = 768.0 / 2.0;
+	float fov = 45.0f;
 };
 
 #endif

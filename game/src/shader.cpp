@@ -24,7 +24,7 @@ void shader::loadFragmentShader(void)
     }
 }
 
-unsigned int shader::getShaderProgram(void)
+unsigned int shader::getShaderProgram(void) const
 {
 	return (this->shaderProgram);
 }

@@ -2,8 +2,6 @@
 #define SHADER_H
 
 #include <iostream>
-#include <vector>
-#include <cmath>
 
 #include "../../libs/glfw-3.3.8/include/GLFW/glfw3.h"
 #include "../../libs/glad/include/glad/glad.h"
@@ -29,8 +27,7 @@ public:
 	shader(int);
 	~shader();
 
-	unsigned int getShaderProgram(void);
-	void setFloat(char* name, float value);
+	unsigned int getShaderProgram(void) const;
 
 private:
 	void loadVertexShader(void);

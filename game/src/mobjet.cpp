@@ -41,9 +41,8 @@ void mObjet::setRotation(int nbShape, int Axe, float angle)
 
 void mObjet::draw()
 {
-	for (int i = 0; i < this->nbPart; i++) {
+	for (int i = 0; i < this->nbPart; i++)
 		this->objet[i]->draw(this->mModel);
-	}
 }
 
 mObjet::mObjet(std::vector<std::string> obj, shader* mShader, unsigned int drawtype)

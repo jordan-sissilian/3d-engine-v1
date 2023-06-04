@@ -2,7 +2,6 @@
 
 void shape::draw(glm::mat4 mModel)
 {
-
     glBindVertexArray(this->mVao);
     glBindBuffer(GL_ARRAY_BUFFER, this->mVbo);
 
@@ -22,18 +21,19 @@ void shape::configureVbo()
 
     glBindVertexArray(0);
 }
+
 std::vector<triangle> shape::loadShapeFromFile(const char* nameCase, const char* nameFile)
 {
     loadObjFile obj = loadObjFile(nameCase, nameFile);
+    this->nameTexture = obj.getTextureName();
     return (obj.getMesh());
 }
 
 shape::shape(const char* name, const char* caseToLoad, const char* fileToLoad, shader* mShader, unsigned int drawtype)
+    :   name(name),
+        mDrawType(drawtype),
+        mShader(mShader)
 {
-    this->name = name;
-    this->mDrawType = drawtype;
-    this->mShader = mShader;
-
     this->Mesh = this->loadShapeFromFile(caseToLoad, fileToLoad);
 
     glGenVertexArrays(1, &this->mVao);
@@ -41,10 +41,7 @@ shape::shape(const char* name, const char* caseToLoad, const char* fileToLoad, s
 	this->configureVbo();
     this->matrixLocation = glGetUniformLocation(this->mShader->getShaderProgram(), "matrixModel");
 
-    if (name[0] == 'm')
-        this->mTexture = new texture("./res/shape3d/map/texture/1.png");
-    else
-        this->mTexture = new texture("./res/shape3d/" + std::string(name) + "/texture/arbre.jpg");
+    this->mTexture = new texture("./res/shape3d/" + (!std::strcmp(this->nameTexture.c_str(), "error.jpg") ? std::string("default") : std::string(name)) + "/texture/" + std::string(this->nameTexture));
 }
 
 shape::~shape() { }

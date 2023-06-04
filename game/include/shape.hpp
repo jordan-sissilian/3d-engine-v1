@@ -1,11 +1,8 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
-#include "./shader.hpp"
 #include "./texture.hpp"
 #include "./loadObjFile/loadObjFile.hpp"
-#include <fstream>
-
 
 class shape
 {
@@ -18,10 +15,10 @@ public:
 	~shape();
 
 	void draw(glm::mat4 mModel);
-	void configureVbo();
 
 private:
-	std::vector<triangle> loadShapeFromFile(const char* nameCase, const char* nameFile);
+	void configureVbo();
+	std::vector<triangle> loadShapeFromFile(const char*, const char*);
 
 public:
 	const char* name;
@@ -41,6 +38,7 @@ private:
 
 	shader* mShader;
 	texture* mTexture;
+	std::string nameTexture;
 };
 
 #endif

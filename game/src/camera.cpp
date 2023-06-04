@@ -8,9 +8,9 @@ void camera::mouseControl(Window* window)
 
 	glfwGetCursorPos(window->window, &xpos, &ypos);
 	f && (this->lastX = xpos, this->lastY = ypos, f = false);
-  
+
     xoffset = xpos - this->lastX;
-    yoffset = this->lastY - ypos; 
+    yoffset = this->lastY - ypos;
     this->lastX = xpos;
     this->lastY = ypos;
     xoffset *= 0.1f;
@@ -22,7 +22,13 @@ void camera::mouseControl(Window* window)
     this->direction.x = cos(glm::radians(this->yaw)) * cos(glm::radians(this->pitch));
     this->direction.y = sin(glm::radians(this->pitch));
     this->direction.z = sin(glm::radians(this->yaw)) * cos(glm::radians(this->pitch));
-    this->cameraFront = glm::normalize(direction);
+    this->cameraFront = glm::normalize(this->direction);
+}
+
+void camera::load()
+{
+	glUniformMatrix4fv(this->matrixViewLocation, 1, GL_FALSE, glm::value_ptr(this->matrixView));
+    glUniformMatrix4fv(this->matrixProjectionLocation, 1, GL_FALSE, glm::value_ptr(this->matrixProjection));
 }
 
 void camera::control(Window *window)
@@ -41,12 +47,6 @@ void camera::control(Window *window)
 	this->matrixView = glm::lookAt(this->cameraPosition, this->cameraPosition + this->cameraFront, this->cameraUp);
 	this->load();
 }
- 
-void camera::load()
-{
-	glUniformMatrix4fv(this->matrixViewLocation, 1, GL_FALSE, glm::value_ptr(this->matrixView));
-    glUniformMatrix4fv(this->matrixProjectionLocation, 1, GL_FALSE, glm::value_ptr(this->matrixProjection));
-}
 
 camera::camera(shader *shader)
 {
@@ -59,14 +59,7 @@ camera::camera(shader *shader)
 
 	this->matrixProjection = glm::perspective(glm::radians(45.0f), (float)1366/(float)768, 0.1f, 1000.0f);
     this->matrixProjectionLocation = glGetUniformLocation(mshader->getShaderProgram(), "matrixProjection");
-
-	this->yaw = -90.0f;
-	this->pitch = 0.0f;
-	this->lastX = 1366.0f / 2.0;
-	this->lastY = 768.0 / 2.0;
-	this->fov = 45.0f;
 }
 
 camera::~camera()
-{
-}
+{ }

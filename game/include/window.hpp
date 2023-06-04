@@ -5,28 +5,29 @@
 #include "../../libs/glad/include/glad/glad.h"
 #include <iostream>
 
-#define nameGame "3d\0"
-#define major 3
-#define minor 3
-#define hauteurJeu 768 
-#define largeurJeu 1366
+constexpr const char* nameGame = "3d";
+constexpr int majorV = 3;
+constexpr int minorV = 3;
+constexpr uint32_t hauteurJeu = 768;
+constexpr uint32_t largeurJeu = 1366;
+
 
 class Window
 {
-private:
-	const char* name = nameGame;
-	unsigned int height;
-	unsigned int width;
-
-	int majorVersion;
-	int minorVersion;
-
 public:
 	GLFWwindow* window;
 
 public:
 	Window(uint height, uint width);
-	~Window();
+	virtual ~Window();
+
+private:
+	const char* name = nameGame;
+	uint32_t height = hauteurJeu;
+	uint32_t width = largeurJeu;
+
+	int majorVersion = majorV;
+	int minorVersion = minorV;
 
 private:
 	void loadGLFW(void);
