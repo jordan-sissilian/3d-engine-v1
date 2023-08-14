@@ -6,7 +6,7 @@
 
 struct sommetTriangle
 {
-	float x;
+    float x;
     float y;
     float z;
 
@@ -16,15 +16,16 @@ struct sommetTriangle
 
 struct triangle
 {
-	sommetTriangle sommet[3];
+    sommetTriangle sommet[3];
 };
 
-class texture {
+class texture
+{
 public:
     texture(std::string name);
     ~texture();
 
-    void bind(shader*);
+    void bind(shader *);
 
 private:
     GLuint idTexture;

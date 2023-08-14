@@ -1,6 +1,6 @@
 #include "../include/window.hpp"
 
-static void fcallback(GLFWwindow* window, int width, int height)
+static void fcallback(GLFWwindow *window, int width, int height)
 {
     glViewport(0, 0, width, height);
 }

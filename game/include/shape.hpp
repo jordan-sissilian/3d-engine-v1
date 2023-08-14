@@ -7,10 +7,10 @@
 class shape
 {
 public:
-	shape(const char* name,
-		  const char* caseToLoad,
-		  const char* fileToLoad,
-		  shader* mShader,
+	shape(const char *name,
+		  const char *caseToLoad,
+		  const char *fileToLoad,
+		  shader *mShader,
 		  unsigned int drawtype);
 	~shape();
 
@@ -18,10 +18,10 @@ public:
 
 private:
 	void configureVbo();
-	std::vector<triangle> loadShapeFromFile(const char*, const char*);
+	std::vector<triangle> loadShapeFromFile(const char *, const char *);
 
 public:
-	const char* name;
+	const char *name;
 	glm::vec3 position;
 	glm::vec3 scale;
 	glm::vec3 rotation;
@@ -36,8 +36,8 @@ private:
 	unsigned int mVbo;
 	unsigned int mDrawType;
 
-	shader* mShader;
-	texture* mTexture;
+	shader *mShader;
+	texture *mTexture;
 	std::string nameTexture;
 };
 

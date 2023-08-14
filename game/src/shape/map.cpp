@@ -7,10 +7,10 @@ void map::drawmap()
 	this->draw();
 }
 
-map::map(std::vector<std::string> obj, shader* mShader, unsigned int drawtype, glm::vec3 couleur) : mObjet(obj, mShader, drawtype)
+map::map(std::vector<std::string> obj, shader *mShader, unsigned int drawtype, glm::vec3 couleur) : mObjet(obj, mShader, drawtype)
 {
 	this->mShader = mShader;
 	this->couleurmap = couleur;
 }
 
-map::~map() { }
+map::~map() {}

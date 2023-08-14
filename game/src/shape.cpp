@@ -17,31 +17,31 @@ void shape::configureVbo()
     glBindBuffer(GL_ARRAY_BUFFER, this->mVbo);
     glBufferData(GL_ARRAY_BUFFER, this->Mesh.size() * sizeof(triangle), this->Mesh.data(), this->mDrawType);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(sommetTriangle), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(sommetTriangle), (void *)0);
 
     glBindVertexArray(0);
 }
 
-std::vector<triangle> shape::loadShapeFromFile(const char* nameCase, const char* nameFile)
+std::vector<triangle> shape::loadShapeFromFile(const char *nameCase, const char *nameFile)
 {
     loadObjFile obj = loadObjFile(nameCase, nameFile);
     this->nameTexture = obj.getTextureName();
     return (obj.getMesh());
 }
 
-shape::shape(const char* name, const char* caseToLoad, const char* fileToLoad, shader* mShader, unsigned int drawtype)
-    :   name(name),
-        mDrawType(drawtype),
-        mShader(mShader)
+shape::shape(const char *name, const char *caseToLoad, const char *fileToLoad, shader *mShader, unsigned int drawtype)
+    : name(name),
+      mDrawType(drawtype),
+      mShader(mShader)
 {
     this->Mesh = this->loadShapeFromFile(caseToLoad, fileToLoad);
 
     glGenVertexArrays(1, &this->mVao);
-	glBindVertexArray(this->mVao);
-	this->configureVbo();
+    glBindVertexArray(this->mVao);
+    this->configureVbo();
     this->matrixLocation = glGetUniformLocation(this->mShader->getShaderProgram(), "matrixModel");
 
     this->mTexture = new texture("./res/shape3d/" + (!std::strcmp(this->nameTexture.c_str(), "error.jpg") ? std::string("default") : std::string(name)) + "/texture/" + std::string(this->nameTexture));
 }
 
-shape::~shape() { }
+shape::~shape() {}

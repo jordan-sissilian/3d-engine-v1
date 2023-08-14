@@ -9,10 +9,10 @@ private:
 	GLuint couleurcarLoc;
 	glm::vec3 couleurcar;
 
-	shader* mShader;
+	shader *mShader;
 
 public:
-	car(std::vector<std::string> obj, shader*, unsigned int, glm::vec3);
+	car(std::vector<std::string> obj, shader *, unsigned int, glm::vec3);
 	~car();
 
 	void drawcar();

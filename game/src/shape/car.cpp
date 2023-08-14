@@ -7,10 +7,10 @@ void car::drawcar()
 	this->draw();
 }
 
-car::car(std::vector<std::string> obj, shader* mShader, unsigned int drawtype, glm::vec3 couleur) : mObjet(obj, mShader, drawtype)
+car::car(std::vector<std::string> obj, shader *mShader, unsigned int drawtype, glm::vec3 couleur) : mObjet(obj, mShader, drawtype)
 {
 	this->mShader = mShader;
 	this->couleurcar = couleur;
 }
 
-car::~car() { }
+car::~car() {}

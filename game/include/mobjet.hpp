@@ -6,10 +6,11 @@
 class mObjet
 {
 public:
-	mObjet(std::vector<std::string>, shader*, unsigned int);
+	mObjet(std::vector<std::string>, shader *, unsigned int);
 	~mObjet();
 
 	void draw();
+	void drawIndex(int);
 
 	void setRotation(int nbShape, int Axe, float angle);
 	void setScale(int nbShape, float v);
@@ -23,8 +24,15 @@ private:
 	int nbPart;
 	std::vector<char *> namePart;
 
+	glm::mat4 position;
+	glm::mat4 rotation;
+
 public:
 	std::vector<shape *> objet;
+
+	float pos[3];
+	float rot;
+	float scale;
 };
 
 #endif

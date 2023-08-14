@@ -1,4 +1,4 @@
-const char *fragmentShaderSource = 
+const char *fragmentShaderSource =
     "#version 330 core \n"
     ""
     "in vec2 fragTextureCoord; \n"

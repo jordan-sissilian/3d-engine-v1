@@ -1,6 +1,6 @@
 #include "../include/camera.hpp"
 
-void camera::mouseControl(Window* window)
+void camera::mouseControl(Window *window)
 {
 	double xpos, ypos;
 	float xoffset, yoffset;
@@ -9,26 +9,26 @@ void camera::mouseControl(Window* window)
 	glfwGetCursorPos(window->window, &xpos, &ypos);
 	f && (this->lastX = xpos, this->lastY = ypos, f = false);
 
-    xoffset = xpos - this->lastX;
-    yoffset = this->lastY - ypos;
-    this->lastX = xpos;
-    this->lastY = ypos;
-    xoffset *= 0.1f;
-    yoffset *= 0.1f;
-    this->yaw += xoffset;
-    this->pitch += yoffset;
-    this->pitch > 89.0f && (this->pitch = 89.0f);
-    this->pitch < -89.0f && (this->pitch = -89.0f);
-    this->direction.x = cos(glm::radians(this->yaw)) * cos(glm::radians(this->pitch));
-    this->direction.y = sin(glm::radians(this->pitch));
-    this->direction.z = sin(glm::radians(this->yaw)) * cos(glm::radians(this->pitch));
-    this->cameraFront = glm::normalize(this->direction);
+	xoffset = xpos - this->lastX;
+	yoffset = this->lastY - ypos;
+	this->lastX = xpos;
+	this->lastY = ypos;
+	xoffset *= 0.1f;
+	yoffset *= 0.1f;
+	this->yaw += xoffset;
+	this->pitch += yoffset;
+	this->pitch > 89.0f && (this->pitch = 89.0f);
+	this->pitch < -89.0f && (this->pitch = -89.0f);
+	this->direction.x = cos(glm::radians(this->yaw)) * cos(glm::radians(this->pitch));
+	this->direction.y = sin(glm::radians(this->pitch));
+	this->direction.z = sin(glm::radians(this->yaw)) * cos(glm::radians(this->pitch));
+	this->cameraFront = glm::normalize(this->direction);
 }
 
 void camera::load()
 {
 	glUniformMatrix4fv(this->matrixViewLocation, 1, GL_FALSE, glm::value_ptr(this->matrixView));
-    glUniformMatrix4fv(this->matrixProjectionLocation, 1, GL_FALSE, glm::value_ptr(this->matrixProjection));
+	glUniformMatrix4fv(this->matrixProjectionLocation, 1, GL_FALSE, glm::value_ptr(this->matrixProjection));
 }
 
 void camera::control(Window *window)
@@ -53,13 +53,14 @@ camera::camera(shader *shader)
 	this->mshader = shader;
 
 	this->cameraPosition = glm::vec3(0.0f, 1.0f, 3.0f);
-    this->cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+	this->cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 	this->cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
-    this->matrixViewLocation = glGetUniformLocation(mshader->getShaderProgram(), "matrixView");
+	this->matrixViewLocation = glGetUniformLocation(mshader->getShaderProgram(), "matrixView");
 
-	this->matrixProjection = glm::perspective(glm::radians(45.0f), (float)1366/(float)768, 0.1f, 1000.0f);
-    this->matrixProjectionLocation = glGetUniformLocation(mshader->getShaderProgram(), "matrixProjection");
+	this->matrixProjection = glm::perspective(glm::radians(45.0f), (float)1366 / (float)768, 0.1f, 1000.0f);
+	this->matrixProjectionLocation = glGetUniformLocation(mshader->getShaderProgram(), "matrixProjection");
 }
 
 camera::~camera()
-{ }
+{
+}

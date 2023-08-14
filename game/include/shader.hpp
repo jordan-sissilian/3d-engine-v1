@@ -21,7 +21,7 @@ private:
 
 public:
 	int success;
-    char infoLog[512];
+	char infoLog[512];
 
 public:
 	shader(int);

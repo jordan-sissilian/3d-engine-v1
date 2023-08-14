@@ -13,9 +13,18 @@ struct sommetTriangle;
 struct coordTexture;
 struct triangle;
 
-struct v { float x, y, z; };
-struct vt { float u, v; };
-struct vn { float x, y, z; };
+struct v
+{
+	float x, y, z;
+};
+struct vt
+{
+	float u, v;
+};
+struct vn
+{
+	float x, y, z;
+};
 struct f
 {
 	unsigned int v[3];
@@ -23,12 +32,11 @@ struct f
 	unsigned int vn[3];
 };
 
-
 class loadObjFile
 {
 public:
 	loadObjFile(std::string, std::string);
-	~loadObjFile() {};
+	~loadObjFile(){};
 
 	std::vector<triangle> getMesh();
 	std::string getTextureName();

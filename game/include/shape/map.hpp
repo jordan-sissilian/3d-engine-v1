@@ -9,10 +9,10 @@ private:
 	GLuint couleurmapLoc;
 	glm::vec3 couleurmap;
 
-	shader* mShader;
+	shader *mShader;
 
 public:
-	map(std::vector<std::string> obj, shader*, unsigned int, glm::vec3);
+	map(std::vector<std::string> obj, shader *, unsigned int, glm::vec3);
 	~map();
 
 	void drawmap();
