@@ -13,5 +13,4 @@ map::map(std::vector<std::string> obj, shader* mShader, unsigned int drawtype, g
 	this->couleurmap = couleur;
 }
 
-map::~map()
-{ }
+map::~map() { }
